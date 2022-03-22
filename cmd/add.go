@@ -18,7 +18,10 @@ func addRun(cmd *cobra.Command, args []string) {
 		items = append(items, todo.Item{Text: x})
 	}
 
-	fmt.Printf("%#v\n", items)
+	err := todo.SaveItems("/Users/mfgomes/.tridos.json", items)
+	if err != nil {
+		_ = fmt.Errorf("%v", err)
+	}
 }
 
 // addCmd represents the add command
