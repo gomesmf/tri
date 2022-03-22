@@ -13,7 +13,7 @@ import (
 )
 
 func addRun(cmd *cobra.Command, args []string) {
-	items, err := todo.ReadItems("/Users/mfgomes/.tridos.json")
+	items, err := todo.ReadItems(dataFile)
 	if err != nil {
 		log.Printf("%v", err)
 	}
@@ -22,7 +22,7 @@ func addRun(cmd *cobra.Command, args []string) {
 		items = append(items, todo.Item{Text: x})
 	}
 
-	err = todo.SaveItems("/Users/mfgomes/.tridos.json", items)
+	err = todo.SaveItems(dataFile, items)
 	if err != nil {
 		_ = fmt.Errorf("%v", err)
 	}

@@ -13,7 +13,7 @@ import (
 )
 
 func listRun(cmd *cobra.Command, args []string) {
-	items, err := todo.ReadItems("/Users/mfgomes/.tridos.json")
+	items, err := todo.ReadItems(dataFile)
 	if err != nil {
 		log.Printf("%v", err)
 	}
