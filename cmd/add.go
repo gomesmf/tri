@@ -7,14 +7,18 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/gomesmf/tri/todo"
 	"github.com/spf13/cobra"
 )
 
 func addRun(cmd *cobra.Command, args []string) {
-	fmt.Println("add called")
+	items := []todo.Item{}
+
 	for _, x := range args {
-		fmt.Println(x)
+		items = append(items, todo.Item{Text: x})
 	}
+
+	fmt.Printf("%#v\n", items)
 }
 
 // addCmd represents the add command
