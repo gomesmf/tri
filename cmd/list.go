@@ -25,7 +25,9 @@ func listRun(cmd *cobra.Command, args []string) {
 
 	w := tabwriter.NewWriter(os.Stdout, 3, 0, 1, ' ', 0)
 	for _, i := range items {
-		fmt.Fprintln(w, i.Label()+"\t"+i.PrettyDone()+"\t"+i.PrettyP()+"\t"+i.Text+"\t")
+		if allOpt || i.Done == doneOpt {
+			fmt.Fprintln(w, i.Label()+"\t"+i.PrettyDone()+"\t"+i.PrettyP()+"\t"+i.Text+"\t")
+		}
 	}
 
 	w.Flush()
@@ -39,6 +41,11 @@ var listCmd = &cobra.Command{
 	Run:   listRun,
 }
 
+var (
+	doneOpt bool
+	allOpt  bool
+)
+
 func init() {
 	rootCmd.AddCommand(listCmd)
 
@@ -51,4 +58,7 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// listCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
+	listCmd.Flags().BoolVar(&doneOpt, "done", false, "Show 'Done' Todos")
+	listCmd.Flags().BoolVar(&allOpt, "all", false, "Show all Todos")
 }
