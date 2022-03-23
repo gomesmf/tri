@@ -13,10 +13,11 @@ import (
 
 	"github.com/gomesmf/tri/todo"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 func listRun(cmd *cobra.Command, args []string) {
-	items, err := todo.ReadItems(dataFile)
+	items, err := todo.ReadItems(viper.GetString("datafile"))
 	if err != nil {
 		log.Printf("%v", err)
 	}

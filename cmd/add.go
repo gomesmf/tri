@@ -10,12 +10,13 @@ import (
 
 	"github.com/gomesmf/tri/todo"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 var priority int
 
 func addRun(cmd *cobra.Command, args []string) {
-	items, err := todo.ReadItems(dataFile)
+	items, err := todo.ReadItems(viper.GetString("datafile"))
 	if err != nil {
 		log.Printf("%v", err)
 	}
@@ -26,8 +27,7 @@ func addRun(cmd *cobra.Command, args []string) {
 		items = append(items, item)
 	}
 
-	err = todo.SaveItems(dataFile, items)
-	if err != nil {
+	if err := todo.SaveItems(viper.GetString("datafile"), items); err != nil {
 		_ = fmt.Errorf("%v", err)
 	}
 }
