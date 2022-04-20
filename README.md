@@ -1,15 +1,8 @@
-# Install
+Simple to-do CLI application written with cobra
 
-```
-go build
-```
+- Install `go build`
+- Run `./tri`
 
-# How to use
-
-```
-./tri
-```
-
-# References
+**References**
 
 - [https://spf13.com/presentation/building-an-awesome-cli-app-in-go-oscon/](https://spf13.com/presentation/building-an-awesome-cli-app-in-go-oscon/)
